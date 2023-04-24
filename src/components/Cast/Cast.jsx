@@ -8,8 +8,9 @@ const Cast = () => {
     getCast();
     async function getCast() {
       const muvieCast = getSearchCast(movieId);
+      console.log(muvieCast);
     }
-  }, []);
+  }, [movieId]);
 
   return <p>This is the movie cast: {movieId}</p>;
 };
