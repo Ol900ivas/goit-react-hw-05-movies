@@ -3,9 +3,6 @@ import defaultPoster from '../../images/defaultPoster.png';
 const MovieCard = ({ poster, title, date, vote, overview, genres }) => {
   const percentageVote = Math.round(vote * 10);
   const releaseYear = new Date(date).getFullYear();
-  console.log(percentageVote);
-  console.log(releaseYear);
-  console.log(genres);
   const imageUrl = 'https://image.tmdb.org/t/p/w300/';
   return (
     <>

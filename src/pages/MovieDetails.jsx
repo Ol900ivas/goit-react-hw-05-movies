@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense, useRef } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { getSearchMuvieById } from '../servises/api';
+import { fetchMovieById } from '../servises/fetch';
 import MovieCard from '../components/MovieCard/MovieCard';
 import Loader from '../components/Loader/Loader';
 
@@ -12,14 +12,14 @@ const MovieDetails = () => {
   useEffect(() => {
     getMovieById();
     async function getMovieById() {
-      const data = await getSearchMuvieById(movieId);
+      const data = await fetchMovieById(movieId);
       setMovieInfo(data);
     }
   }, [movieId]);
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movieInfo;
-  console.log(location);
+
   return (
     <main>
       <Link to={backLinkLocation.current}>Go back</Link>

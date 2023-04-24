@@ -11,8 +11,8 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.params = {
   api_key: '91d51c28e9627ca3e06710d14d157b60',
 };
-
-export const getTrending = async () => {
+export const imageUrl = 'https://image.tmdb.org/t/p/w300/';
+export const fetchTrending = async () => {
   try {
     const {
       data: { results },
@@ -23,7 +23,7 @@ export const getTrending = async () => {
   }
 };
 
-export const getSearchMuvieByName = async query => {
+export const fetchMovieByName = async query => {
   try {
     const {
       data: { results },
@@ -37,7 +37,7 @@ export const getSearchMuvieByName = async query => {
   }
 };
 
-export const getSearchMuvieById = async movieId => {
+export const fetchMovieById = async movieId => {
   try {
     const { data } = await axios.get(`/movie/${movieId}`);
     console.log(data);
@@ -47,13 +47,25 @@ export const getSearchMuvieById = async movieId => {
   }
 };
 
-export const getSearchCast = async movieId => {
+export const fetchCast = async movieId => {
   try {
     const {
       data: { cast },
     } = await axios.get(`/movie/${movieId}/credits`);
     console.log(cast);
     return cast;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchReviews = async movieId => {
+  try {
+    const {
+      data: { results },
+    } = await axios.get(`/movie/${movieId}/reviews`);
+    console.log(results);
+    return results;
   } catch (error) {
     console.error(error);
   }

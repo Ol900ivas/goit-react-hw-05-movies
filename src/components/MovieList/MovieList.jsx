@@ -9,10 +9,12 @@ export const MovieList = ({ movies }) => {
     <Container>
       {movies.map(({ id, poster_path, title }) => (
         <CardWrapper key={id}>
-          <Link to={`${id}`} state={{ from: location }}>
+          <Link to={`/movies/${id}`} state={{ from: location }}>
             <img
               src={poster_path ? `${imageUrl}${poster_path}` : defaultPoster}
               alt=""
+              height={360}
+              width={280}
             />
             <MovieName>{title}</MovieName>
           </Link>
