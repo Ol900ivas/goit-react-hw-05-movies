@@ -1,31 +1,48 @@
-import { useEffect } from 'react';
-// import { useSearchParams } from 'react-router-dom';
-// import { MovieList } from '../components/MovieList/MovieList';
-// import { SearchBox } from '../components/SearchBox/SearchBox';
-// import { getMovies } from '../API';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { MovieList } from '../components/MovieList/MovieList';
+import SearchBox from '../components/SearchBox/SearchBox';
+import { getSearchMuvieByName } from '../servises/api';
 
 const Movies = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const movieName = searchParams.get('query') ?? '';
+
   useEffect(() => {
-    // getMoviebyID(); HTTP запит
-  }, []);
-  //   const movies = getMovies();
-  //   const [searchParams, setSearchParams] = useSearchParams();
-  //   const movieName = searchParams.get('name') ?? '';
+    if (movieName === '') return;
+    getMovieByName();
+    async function getMovieByName() {
+      const results = await getSearchMuvieByName(movieName);
+      const movieSet = results.map(({ id, title, poster_path }) => ({
+        id,
+        title,
+        poster_path,
+      }));
+      if (movieSet.length === 0)
+        toast.error(`Nothing was found. Try to change your query`);
+      setMovies([...movieSet]);
+    }
+  }, [movieName]);
 
-  //   const visibleMovies = movies.filter(movie =>
-  //     movie.name.toLowerCase().includes(movieName.toLowerCase())
-  //   );
-
-  //   const updateQueryString = name => {
-  //     const nextParams = name !== '' ? { name } : {};
-  //     setSearchParams(nextParams);
-  //   };
-
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const value = evt.target.query.value;
+    console.log(evt.target);
+    value.trim() !== ''
+      ? setSearchParams({ query: value })
+      : toast.warn(`Please, enter your query`);
+    evt.target.reset();
+  };
   return (
     <main>
       <h1>Movies</h1>
-      {/* <SearchBox value={movieName} onChange={updateQueryString} />
-      <MovieList movies={visibleMovies} /> */}
+      <SearchBox onSubmit={handleSubmit} />
+      <MovieList movies={movies} />
+
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
         laborum amet ab cumque sit nihil dolore modi error repudiandae
@@ -39,6 +56,7 @@ const Movies = () => {
         dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
         eaque voluptatibus eveniet error, nulla rem iusto?
       </p>
+      <ToastContainer />
     </main>
   );
 };

@@ -1,8 +1,26 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { getTrending } from '../servises/api';
+import { MovieList } from 'components/MovieList/MovieList';
 
 const Home = () => {
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
-    // getMovies(); HTTP запит
+    getTrendingMovies();
+    async function getTrendingMovies() {
+      try {
+        const results = await getTrending();
+        console.log(results);
+        const movieSet = results.map(({ id, title, poster_path }) => ({
+          id,
+          title,
+          poster_path,
+        }));
+
+        setMovies([...movieSet]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }, []);
 
   return (
@@ -14,6 +32,7 @@ const Home = () => {
         laboriosam placeat incidunt rem illum animi nemo quibusdam quia
         voluptatum voluptate.
       </p>
+      <MovieList movies={movies} />
     </main>
   );
 };

@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { getSearchCast } from '../../servises/api';
 
 const Cast = () => {
   const { movieId } = useParams();
   useEffect(() => {
-    // getMoviebyID(); HTTP запит
+    getCast();
+    async function getCast() {
+      const muvieCast = getSearchCast(movieId);
+    }
   }, []);
 
   return <p>This is the movie cast: {movieId}</p>;

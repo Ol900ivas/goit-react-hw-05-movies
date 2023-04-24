@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { HiSearch } from 'react-icons/hi';
 
-export const Wrapper = styled.div`
+export const Form = styled.form`
   display: inline-flex;
   align-items: center;
   position: relative;
