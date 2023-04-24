@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { fetchTrending } from '../servises/fetch';
 import { MovieList } from 'components/MovieList/MovieList';
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const location = useLocation();
 
   useEffect(() => {
     getTrendingMovies();
