@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Form, Input, Icon } from './SearchBox.styled';
 
 const SearchBox = ({ onSubmit }) => {
