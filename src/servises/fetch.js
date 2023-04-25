@@ -37,7 +37,9 @@ export const fetchMovieById = async movieId => {
     console.log('MovieById:', data);
     return data;
   } catch (error) {
-    console.error(error);
+    // console.error(error.message);
+    // return error.message;
+    throw error;
   }
 };
 

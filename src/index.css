@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #336fb3df; */
+  /* background-color: #f3efc3df; */
 }
 
 code {
@@ -42,6 +42,6 @@ img {
   height: auto; */
 }
 
-a,
+/* a,
 link {
-}
+} */

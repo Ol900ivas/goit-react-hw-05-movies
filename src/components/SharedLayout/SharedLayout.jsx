@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Loader from '../Loader/Loader';
 import { BiCameraMovie } from 'react-icons/bi';
+
 import { Container, Header, Logo, LogoName, Link } from './SharedLayout.styled';
 
 const SharedLayout = () => {
@@ -9,9 +10,7 @@ const SharedLayout = () => {
     <Container>
       <Header>
         <Logo>
-          <span role="img" aria-label="computer icon">
-            <BiCameraMovie />
-          </span>{' '}
+          <BiCameraMovie size="40px" />
           <LogoName>Movie info</LogoName>
         </Logo>
         <nav>
@@ -29,4 +28,3 @@ const SharedLayout = () => {
 };
 
 export default SharedLayout;
-// BsFillReplyFill;

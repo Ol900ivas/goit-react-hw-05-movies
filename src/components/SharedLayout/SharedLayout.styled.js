@@ -27,7 +27,10 @@ export const Header = styled.header`
 // box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
 //     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 
-export const Logo = styled.p`
+export const Logo = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
   font-weight: 700;
   margin: 0;
 `;
