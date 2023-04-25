@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, 280px);
   gap: 16px;
+  margin-top: 16px;
 `;
 
 export const CardWrapper = styled.div`

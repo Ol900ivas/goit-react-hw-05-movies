@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCast, imageUrl } from '../../servises/fetch';
 import defaultProfilePhoto from '../../images/defaultProfilePhoto.png';
+import { CastList, CastItem, Name, Par } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -22,24 +23,29 @@ const Cast = () => {
   }, [movieId]);
 
   return cast.length !== 0 ? (
-    <ul>
-      {cast.map(one => (
-        <li key={one.id}>
-          <img
-            src={
-              one.profile_path
-                ? `${imageUrl}${one.profile_path}`
-                : defaultProfilePhoto
-            }
-            alt={one.name}
-            width={100}
-          />
-          <p>{one.name}</p>
-          <p>character:</p>
-          <p>{one.character}</p>
-        </li>
+    <CastList>
+      {cast.map(actor => (
+        <CastItem key={actor.id}>
+          <div>
+            <img
+              src={
+                actor.profile_path
+                  ? `${imageUrl}${actor.profile_path}`
+                  : defaultProfilePhoto
+              }
+              alt={actor.name}
+              width={100}
+              height={150}
+            />
+            <div>
+              <Name>{actor.name}</Name>
+              <Par>character:</Par>
+              <p>{actor.character}</p>
+            </div>
+          </div>
+        </CastItem>
       ))}
-    </ul>
+    </CastList>
   ) : (
     <p>Sorry, there's no information about the cast</p>
   );

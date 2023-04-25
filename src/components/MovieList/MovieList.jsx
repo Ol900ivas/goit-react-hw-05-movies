@@ -1,8 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Container, CardWrapper, MovieName } from './MovieList.styled';
 import defaultPoster from '../../images/defaultPoster.png';
 
-export const MovieList = ({ movies }) => {
+const MovieList = ({ movies }) => {
   const location = useLocation();
   const imageUrl = 'https://image.tmdb.org/t/p/w300/';
   return (
@@ -23,3 +24,9 @@ export const MovieList = ({ movies }) => {
     </Container>
   );
 };
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default MovieList;

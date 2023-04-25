@@ -1,8 +1,10 @@
 import { useState, useEffect, Suspense, useRef } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { BsArrowLeft } from 'react-icons/bs';
 import { fetchMovieById } from '../servises/fetch';
 import MovieCard from '../components/MovieCard/MovieCard';
 import Loader from '../components/Loader/Loader';
+import { SubTitle, Ul } from '../components/MovieCard/MovieCard.styled';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState('');
@@ -22,8 +24,10 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <Link to={backLinkLocation.current}>Go back</Link>
-      <h1>Movie details: {movieId}</h1>
+      <Link to={backLinkLocation.current}>
+        <BsArrowLeft />
+        Go back
+      </Link>
       <MovieCard
         poster={poster_path}
         title={title}
@@ -32,15 +36,15 @@ const MovieDetails = () => {
         overview={overview}
         genres={genres}
       />
-      <h3>Additional information</h3>
-      <ul>
+      <SubTitle>Additional information</SubTitle>
+      <Ul>
         <li>
           <Link to="cast">Cast</Link>
         </li>
         <li>
           <Link to="reviews">Reviews</Link>
         </li>
-      </ul>
+      </Ul>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
@@ -49,6 +53,3 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
-
-// /movies/get - movie - details запит повної інформації
-//  про фільм для сторінки кінофільму.

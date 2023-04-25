@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { MovieList } from '../components/MovieList/MovieList';
+import MovieList from '../components/MovieList/MovieList';
 import SearchBox from '../components/SearchBox/SearchBox';
 import { fetchMovieByName } from '../servises/fetch';
 
@@ -38,7 +38,6 @@ const Movies = () => {
   };
   return (
     <main>
-      <h1>Movies</h1>
       <SearchBox onSubmit={handleSubmit} />
       <MovieList movies={movies} />
       <ToastContainer />

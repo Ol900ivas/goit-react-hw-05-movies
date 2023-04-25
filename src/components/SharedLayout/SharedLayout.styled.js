@@ -15,16 +15,25 @@ export const Header = styled.header`
   gap: 12px;
   padding: 8px 0;
   margin-bottom: 16px;
-  border-bottom: 1px solid black;
+
+  box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.3),
+    0px 1px 1px -4px rgba(0, 0, 0, 0.14);
 
   > nav {
     display: flex;
   }
 `;
+//  border-bottom: 1px solid black;
+// box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+//     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 
 export const Logo = styled.p`
   font-weight: 700;
   margin: 0;
+`;
+
+export const LogoName = styled.span`
+  text-transform: uppercase;
 `;
 
 export const Link = styled(NavLink)`

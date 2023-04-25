@@ -1,10 +1,3 @@
-// 91d51c28e9627ca3e06710d14d157b60
-// For home
-//https://api.themoviedb.org/3/trending/movie/day?api_key=91d51c28e9627ca3e06710d14d157b60
-// "id": 868759,
-// "title": "Ghosted",
-// "poster_path": "/liLN69YgoovHVgmlHJ876PKi5Yi.jpg",
-
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -17,6 +10,7 @@ export const fetchTrending = async () => {
     const {
       data: { results },
     } = await axios.get('/trending/movie/day');
+    console.log('Trending:', results);
     return results;
   } catch (error) {
     console.error(error);
@@ -30,7 +24,7 @@ export const fetchMovieByName = async query => {
     } = await axios.get('/search/movie', {
       params: { query: query },
     });
-    console.log(results);
+    console.log('MovieByName:', results);
     return results;
   } catch (error) {
     console.error(error);
@@ -40,7 +34,7 @@ export const fetchMovieByName = async query => {
 export const fetchMovieById = async movieId => {
   try {
     const { data } = await axios.get(`/movie/${movieId}`);
-    console.log(data);
+    console.log('MovieById:', data);
     return data;
   } catch (error) {
     console.error(error);
@@ -52,7 +46,7 @@ export const fetchCast = async movieId => {
     const {
       data: { cast },
     } = await axios.get(`/movie/${movieId}/credits`);
-    console.log(cast);
+    console.log('Cast:', cast);
     return cast;
   } catch (error) {
     console.error(error);
@@ -64,7 +58,7 @@ export const fetchReviews = async movieId => {
     const {
       data: { results },
     } = await axios.get(`/movie/${movieId}/reviews`);
-    console.log(results);
+    console.log('Reviews:', results);
     return results;
   } catch (error) {
     console.error(error);
